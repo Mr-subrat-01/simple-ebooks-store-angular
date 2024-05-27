@@ -1,0 +1,112 @@
+@import '../../styles.scss';
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar {
+    background-color: $primary-color;
+    padding: 1rem;
+    transition: background-color 0.3s ease;
+
+    .navbar-brand .logo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+    }
+
+    .navbar-toggler {
+        display: block;
+        border: none;
+        background: transparent;
+        color: $light-color;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+
+        div {
+            width: 35px;
+            height: 5px;
+            background-color: $light-color;
+            margin: 6px 0;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        &:hover div {
+            background-color: $dark-color;
+        }
+
+        @media (min-width: 768px) {
+            display: none;
+        }
+    }
+
+    .close-icon {
+        font-size: 2rem;
+        position: absolute;
+        right: 15px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: $primary-color;
+        }
+    }
+
+    .navbar-collapse {
+        display: none;
+        flex-basis: 100%;
+        flex-grow: 1;
+        align-items: center;
+        justify-content: flex-end;
+        transition: display 0.3s ease;
+
+        &.show {
+            display: block;
+            position: absolute;
+            background-color: $dark-color;
+            left: 10px;
+            bottom: 10px;
+            top: 10px;
+            right: 10px;
+            border-radius: 10px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            display: flex !important;
+        }
+    }
+
+    .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+        transition: flex-direction 0.3s ease;
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+        }
+
+        .nav-item {
+            .nav-link {
+                color: $light-color;
+                padding: 0.5rem 1rem;
+                text-decoration: none;
+                font-weight: 700;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: $dark-color;
+                }
+                &.active {
+                    font-weight: bold;
+                    color: #00f6ff;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,85 @@
+@import '../../styles.scss';
+
+.banner {
+    background-image: url('/banner.jpg');
+    /* Replace with your banner image */
+    background-size: cover;
+    background-position: center;
+    color: $light-color;
+    padding: 4rem 0;
+    text-align: center;
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+        }
+    }
+}
+
+.new-books {
+    padding: 4rem 0;
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: $primary-color;
+        }
+
+        .book-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .book {
+            background-color: $light-color;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+
+            img {
+                max-width: 100%;
+                border-radius: 5px;
+                margin-bottom: 1rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+                color: $secondary-color;
+                margin-bottom: 0.5rem;
+            }
+
+            .buy-now-button {
+                background-color: $primary-color;
+                color: $light-color;
+                border: none;
+                border-radius: 5px;
+                padding: 0.5rem 1rem;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+
+                &:hover {
+                    background-color: darken($primary-color, 10%);
+                }
+            }
+        }
+    }
+}

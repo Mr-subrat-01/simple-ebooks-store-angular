@@ -1,0 +1,60 @@
+@import '../../styles.scss';
+.contact-us {
+    padding: 4rem 0;
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: $primary-color; // Using variables from styles.scss
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: $text-color; // Using variables from styles.scss
+            margin-bottom: 2rem;
+        }
+
+        form {
+
+            input[type="text"],
+            input[type="email"],
+            textarea {
+                width: 90%;
+                padding: 10px;
+                margin-bottom: 1rem;
+                border: 1px solid $ccc; // Using variables from styles.scss
+                border-radius: 5px;
+                font-size: 1rem;
+                outline: none;
+                &:focus{
+                    border: 1px solid $primary-color;
+                }
+            }
+
+            textarea {
+                resize: vertical;
+            }
+
+            button[type="submit"] {
+                background-color: $primary-color; // Using variables from styles.scss
+                color: $light-color; // Using variables from styles.scss
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 1rem;
+                transition: background-color 0.3s ease;
+
+                &:hover {
+                    background-color: darken($primary-color, 10%);
+                }
+            }
+        }
+    }
+}

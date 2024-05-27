@@ -1,0 +1,20 @@
+<section class="banner">
+    <div class="container">
+        <h1>WELCOME TO OUR BOOK STORE!</h1>
+        <p>Explore our vast collection of books and find your next great read.</p>
+    </div>
+</section>
+
+<section class="new-books">
+    <div class="container">
+        <h2>New Arrivals</h2>
+        <div class="book-list">
+            <div *ngFor="let book of newBooks" class="book">
+                <img [src]="book.imageUrl" alt="{{ book.title }}">
+                <h3>{{ book.title }}</h3>
+                <p>{{ book.author }}</p>
+                <button class="buy-now-button">Buy Now</button>
+            </div>
+        </div>
+    </div>
+</section>

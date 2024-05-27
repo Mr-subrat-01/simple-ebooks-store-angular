@@ -1,0 +1,24 @@
+@import '../../styles.scss';
+.return-policy,
+.cancellation-policy {
+    padding: 2rem 0;
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: $primary-color; // Using variables from styles.scss
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: $text-color; // Using variables from styles.scss
+            margin-bottom: 1rem;
+        }
+    }
+}
