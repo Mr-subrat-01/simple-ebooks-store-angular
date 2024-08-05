@@ -1,7 +1,89 @@
 @import '../../styles.scss';
+
 .container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 50px auto;
+
+    .main-container {
+        display: flex;
+        gap: 10px;
+
+        .filter-container {
+            width: 20%;
+
+            .hero__categories {
+                padding: 1rem;
+                background-color: $white-color;
+                border-radius: 0.25rem;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+                .hero__categories__all {
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    background-color: $secondary-color;
+                    padding: 7px 10px;
+                    border-radius: 4px;
+                    color: $white-color;
+                }
+
+                ul {
+                    padding-left: 0;
+                }
+
+                ul>li {
+                    margin: 8px 0;
+
+                    &.active {
+                        background-color: $primary-color;
+                        padding: 10px;
+                        font-weight: 700;
+                        border-radius: 4px;
+
+                        a {
+                            color: $light-color;
+                        }
+                    }
+                }
+            }
+        }
+
+        .book-container {
+            width: 80%;
+
+        }
+
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+
+            button {
+                background-color: $primary-color;
+                color: $light-color;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                border-radius: 5px;
+                margin: 0 5px;
+
+                &:disabled {
+                    color: $text-color;
+                    background-color: $ccc;
+                    cursor: not-allowed;
+                }
+
+                &:hover:enabled {
+                    background-color: darken($primary-color, 10%);
+                }
+            }
+
+            span {
+                align-self: center;
+                margin: 0 10px;
+            }
+        }
+    }
 
     h2 {
         text-align: center;
@@ -11,32 +93,57 @@
     }
 
     .book-list {
+
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 20px;
     }
 
-    .book {
-        background-color: $ccc;
-        border-radius: 10px;
-        padding: 1rem;
-        text-align: center;
 
+    .book {
+        background-color: $white-color;
+        border-radius: 0.25rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 0.6rem;
+        text-align: center;
+        position: relative;
+        cursor: pointer;
+        .cat-tag{
+          position: absolute;
+            background-color: #fa030396;
+            font-size: 0.6rem;
+            color: white;
+            padding: 5px 10px;
+            width: 50%;
+            top: 16px;
+            border-radius: 0 10px 10px 0;
+            left: 0;
+        }
         img {
-            max-width: 100%;
+            width: -webkit-fill-available;
             border-radius: 5px;
-            margin-bottom: 1rem;
+            margin-bottom: 0;
+            height: 200px;
         }
 
         h3 {
-            font-size: 1.2rem;
+            font-size: 0.7rem;
             margin-bottom: 0.5rem;
         }
 
         p {
-            font-size: 1rem;
+            font-size: 0.5rem;
             color: $secondary-color;
             margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 0.6rem;
+            color: $primary-color;
+            font-weight: bolder;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .buy-now-button {
@@ -53,4 +160,81 @@
             }
         }
     }
+}
+
+.category-list {
+    max-height: 0;
+    opacity: 0;
+    display: none;
+    // transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    transform-origin: top;
+}
+
+.category-list.active {
+    max-height: fit-content;
+    opacity: 1;
+    display: block;
+}
+
+.hero__categories__all {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+mat-slider {
+    width: 80%;
+}
+
+.price-range {
+    background-color: $white-color;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin-bottom: 10px;
+    h3 {
+        margin: 0;
+        padding: 0;
+    }
+
+    .filter-box {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        .filter-btn {
+            background-color: #284246;
+            color: #f8f9fa;
+            cursor: pointer;
+            padding: 10px 15px;
+            border: 0;
+            border-radius: 4px;
+            height: fit-content;
+        }
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .main-container{
+        flex-direction: column;
+        align-items: center;
+        .filter-container{
+            width: 100% !important;
+        }
+        .book-container{
+            width: 100% !important;
+            .price-range{
+                mat-slider{
+                    width: 90%;
+                }
+            }
+            .filter-box{
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    }
+
 }

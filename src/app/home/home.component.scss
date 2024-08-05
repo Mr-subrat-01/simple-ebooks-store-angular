@@ -2,7 +2,6 @@
 
 .banner {
     background-image: url('/banner.jpg');
-    /* Replace with your banner image */
     background-size: cover;
     background-position: center;
     color: $light-color;
@@ -45,26 +44,49 @@
         }
 
         .book {
-            background-color: $light-color;
-            border-radius: 10px;
-            padding: 1rem;
+            background-color: $white-color;
+            border-radius: 0.25rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 0.6rem;
             text-align: center;
-
+            cursor: pointer;
+            position: relative;
+            .cat-tag {
+              position: absolute;
+              background-color: #fa030396;
+              font-size: 0.6rem;
+              color: white;
+              padding: 5px 10px;
+              width: 50%;
+              top: 16px;
+              border-radius: 0 10px 10px 0;
+              left: 0;
+            }
             img {
-                max-width: 100%;
+                width: -webkit-fill-available;
                 border-radius: 5px;
-                margin-bottom: 1rem;
+                margin-bottom: 0;
+                height: 200px;
             }
 
             h3 {
-                font-size: 1.2rem;
+                font-size: 0.7rem;
                 margin-bottom: 0.5rem;
             }
 
             p {
-                font-size: 1rem;
+                font-size: 0.5rem;
                 color: $secondary-color;
                 margin-bottom: 0.5rem;
+            }
+
+            .price {
+                font-size: 0.6rem;
+                color: $primary-color;
+                font-weight: bolder;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
 
             .buy-now-button {

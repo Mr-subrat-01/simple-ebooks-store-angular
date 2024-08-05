@@ -7,13 +7,25 @@
 
 <section class="new-books">
     <div class="container">
-        <h2>New Arrivals</h2>
+        <h2>New Added</h2>
         <div class="book-list">
-            <div *ngFor="let book of newBooks" class="book">
-                <img [src]="book.imageUrl" alt="{{ book.title }}">
+            <div *ngFor="let book of newBooks" class="book"  [routerLink]="['/checkout', book.id]" >
+                <img [src]="book.cover" alt="{{ book.title }}">
                 <h3>{{ book.title }}</h3>
                 <p>{{ book.author }}</p>
-                <button class="buy-now-button">Buy Now</button>
+                <div class="price-section">
+                    <div class="price">{{ book.price | currency:'INR'}}</div>
+                    <!-- @if (book.price>0) {
+                        <p class="price">{{ book.price | currency:'INR'}} (100 % Cashback <img class="coin" src="coin.png" alt="Coin"> )</p>
+                        <p>OR</p>
+                    }
+                    <p class="price">
+                        {{book.coins}}&nbsp;<img src="coin.png" class="coin" alt="Coin">
+                    </p> -->
+                </div>
+                <div class="cat-tag">
+                  {{book.category}}
+                </div>
             </div>
         </div>
     </div>

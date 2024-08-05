@@ -1,0 +1,43 @@
+<section class="orders">
+  <div class="container">
+    <h2>Your Orders</h2>
+    @if (orders.length >0) {
+    <h1>Order Have</h1>
+    @for (order of orders; track $index) {
+    <div class="order">
+      <div class="order-header">
+        <h3>#{{ order.order_id | uppercase}}</h3>
+        <span class="order-date">{{ order.created_at | date }}</span>
+      </div>
+      <div class="order-details">
+        <div class="order-item">
+          <img [src]="order.book_cover_image_url" alt="{{ order.title }}">
+          <div class="item-info">
+            <h4>{{ order.title }}</h4>
+            <p>{{ order.author }}</p>
+            <div class="price">Paid: {{ order.amount | currency:'INR':'symbol':'1.2-2' }}</div>
+            <!-- @if (order.amount>0) {
+                                    <div class="price">Paid: {{ order.amount  }}</div>
+                                    <div class="cashback">Cashback: {{ order.amount | number:'1.0-0'| currency:'INR' }}<img src="coin.png" class="coin" alt="Coin"></div>
+                                }@else {
+                                    <div class="price">Paid: {{ order.coins }}<img src="coin.png" class="coin" alt="Coin"></div>
+                                    <div class="cashback">Cashback:0<img src="coin.png" class="coin" alt="Coin"></div>
+                                } -->
+            <button class="btn btn-primary" (click)="downloadBook(order)">Download</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+    @if (totalPages>1) {
+    <div class="pagination-controls">
+      <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+    }
+    }@else {
+    <h1 style="text-align: center; ">No Order Found</h1>
+    }
+  </div>
+</section>

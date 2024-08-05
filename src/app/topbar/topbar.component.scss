@@ -1,0 +1,45 @@
+@import '../../styles.scss';
+
+.top-bar {
+    background-color: $secondary-color;
+    color: $ccc;
+    padding: 10px 20px;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .user-info {
+        display: flex;
+        gap: 15px;
+
+        .user-id,
+        .user-coins {
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .user-icon {
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .user-info {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+}

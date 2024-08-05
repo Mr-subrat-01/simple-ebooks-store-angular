@@ -1,0 +1,101 @@
+<section class="checkout">
+  <h2>Checkout</h2>
+  <div class="container">
+    @if(isOrdered){
+    <div class="payment-success">
+      <h4 style="background: #ccc;border-radius: 4px;padding: 10px;">{{ orderBookTitle }}</h4>
+      <h3>This Boook Already Ordered!</h3>
+      <p>Thank you for your purchase.</p>
+      <p>Now go to orders page to Download the Book</p>
+      <a [routerLink]="['/orders']" routerLinkActive="router-link-active">Orders</a>
+    </div>
+    }@else {
+    @if (isPaymentSuccess) {
+    <div class="payment-success">
+      <h3>Payment Successful!</h3>
+      <p>Thank you for your purchase. Your payment has been processed successfully.</p>
+      <p>Now go to orders page to Download the Book</p>
+      <a [routerLink]="['/orders']" routerLinkActive="router-link-active">Orders</a>
+    </div>
+    }
+    @if (!isPaymentSuccess) {
+    @if (selectedBook) {
+
+    <div class="book">
+      <div>
+        <img [src]="selectedBook.cover" alt="{{ selectedBook.title }}">
+      </div>
+      <div class="book-info">
+        <span class="title">{{ selectedBook.title }} ({{selectedBook.category}})</span>
+        <p>{{ selectedBook.author }}</p>
+        <p>Pay: {{ convertedPrice | currency:selectedCurrencyCode }}</p>
+      </div>
+    </div>
+
+    @if (selectedBook.price>0) {
+    <form [formGroup]="checkoutForm" (submit)="OnOrderPlaced()">
+      <div class="partial-form">
+        <div class="form-group">
+          <label for="pg">Select Payment Method</label>
+          <select id="pg" name="pg" formControlName="pg" (change)="onPgChange($event)">
+            <option value="">Select One</option>
+            @for (pg of paymentGatways; track $index) {
+            <option [value]="pg">{{ pg }}</option>
+            }
+
+          </select>
+          <div
+            *ngIf="checkoutForm.controls['pg'].invalid && (checkoutForm.controls['pg'].dirty || checkoutForm.controls['pg'].touched)"
+            class="error">
+            *Payment Method is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="currency">Select Currency</label>
+          <select id="currency" name="currency" formControlName="currency" (change)="onCurrencyChange($event)">
+            @for (currency of supportedCurrencies; track $index) {
+            <option [value]="currency">{{ currency }}</option>
+            }
+          </select>
+        </div>
+      </div>
+      <div class="partial-form">
+        <div class="form-group">
+          <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name" required
+            formControlName="name">
+          <div
+            *ngIf="checkoutForm.controls['name'].invalid && (checkoutForm.controls['name'].dirty || checkoutForm.controls['name'].touched)"
+            class="error">
+            *Full Name is required
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" name="email" class="form-control" formControlName="email"
+            placeholder="Enter your email" required>
+          <div
+            *ngIf="checkoutForm.controls['email'].invalid && (checkoutForm.controls['email'].dirty || checkoutForm.controls['email'].touched)"
+            class="error">
+            <div *ngIf="checkoutForm.controls['email'].errors?.['required']">*Email is required</div>
+            <div *ngIf="checkoutForm.controls['email'].errors?.['pattern']">*Invalid email address</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="text" id="phone" name="phone" class="form-control" placeholder="Enter your phone number" required
+          formControlName="phone">
+        <div
+          *ngIf="checkoutForm.controls['phone'].invalid && (checkoutForm.controls['phone'].dirty || checkoutForm.controls['phone'].touched)"
+          class="error">
+          <div *ngIf="checkoutForm.controls['phone'].errors?.['required']">*Phone number is required</div>
+          <div *ngIf="checkoutForm.controls['phone'].errors?.['pattern']">*Invalid phone number. Must be 10 digits</div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn" [disabled]="checkoutForm.invalid">Place Order</button>
+    </form>
+    }
+    }
+    }
+    }
+  </div>
+</section>

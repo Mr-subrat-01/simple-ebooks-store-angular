@@ -1,6 +1,7 @@
 @import '../../styles.scss';
+
 .contact-us {
-    padding: 4rem 0;
+    padding: 2rem 0;
 
     .container {
         max-width: 800px;
@@ -32,7 +33,8 @@
                 border-radius: 5px;
                 font-size: 1rem;
                 outline: none;
-                &:focus{
+
+                &:focus {
                     border: 1px solid $primary-color;
                 }
             }
@@ -53,6 +55,11 @@
 
                 &:hover {
                     background-color: darken($primary-color, 10%);
+                }
+
+                &:disabled {
+                    background-color: #aaa;
+                    cursor: not-allowed;
                 }
             }
         }

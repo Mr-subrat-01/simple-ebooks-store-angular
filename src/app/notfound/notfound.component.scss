@@ -1,0 +1,32 @@
+@import '../../styles.scss';
+
+.not-found {
+    text-align: center;
+    padding: 2rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: $light-color;
+
+    h1 {
+        font-size: 3rem;
+        color: $primary-color;
+    }
+
+    p {
+        font-size: 1.5rem;
+        color: $dark-color;
+    }
+
+    a {
+        color: $primary-color;
+        text-decoration: none;
+        font-weight: bold;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

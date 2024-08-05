@@ -1,0 +1,16 @@
+@if (isLoading | async) {
+<div class="loader-overlay">
+    <div class="loader">
+    </div>
+    @if (isContent | async) {
+      <div class="loader-content">
+        <h2>
+          Please Wait...
+        </h2>
+        <h3>🙌 Don't (Refresh or Leave the page) </h3>
+      </div>
+    }
+</div>
+}
+
+

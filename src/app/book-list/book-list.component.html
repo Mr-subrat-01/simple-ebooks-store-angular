@@ -1,11 +1,77 @@
 <div class="container">
     <h2>All Books</h2>
-    <div class="book-list">
-        <div *ngFor="let book of books" class="book">
-            <img [src]="book.imageUrl" alt="{{ book.title }}">
-            <h3>{{ book.title }}</h3>
-            <p>{{ book.author }}</p>
-            <button class="buy-now-button">Buy Now</button>
+    <div class="main-container">
+        <div class="filter-container">
+            <div class="hero__categories">
+                <div class="hero__categories__all" (click)="OnToggleCategory()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path
+                            d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM64 256c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
+                    </svg>
+                    <span>All Categories</span>
+                    @if (isCategoryOpen) {
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path
+                            d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z" />
+                    </svg>
+                    }@else {
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path
+                            d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+                    </svg>
+                    }
+                </div>
+                <ul [ngClass]="{'category-list': true, 'active': isCategoryOpen}">
+                    @for (category of categories; track $index) {
+                    <li (click)="onCategoryChange(category.id)" [ngClass]="{'active':selectedCategoryId===category.id}">
+                        <a>{{category.name}}</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="book-container">
+            <div class="price-range">
+                <h3>Filter by Price</h3>
+                <mat-slider min="100" max="5000" step="100" showTickMarks="true" thumbLabel="true">
+                    <input [value]="minPrice" [(ngModel)]="minPrice" matSliderStartThumb>
+                    <input [value]="maxPrice" [(ngModel)]="maxPrice" matSliderEndThumb>
+                </mat-slider>
+                <div class="filter-box">
+                    <p>Price Range: ₹{{ minPrice }} - ₹{{ maxPrice }}</p>
+                    <button class="filter-btn" (click)="applyPriceFilter()">Apply Filter</button>
+                </div>
+            </div>
+            <div class="book-list">
+                @if (books.length <= 0) {
+                 <h3 style="text-align:center">No Books Found</h3>
+                }
+                <div *ngFor="let book of books" class="book" [routerLink]="['/checkout', book.id]">
+                    <img [src]="book.cover" alt="{{ book.title }}">
+                    <!-- <img src="/coverImgs/cover1.jpg" alt="{{ book.title }}"> -->
+                    <h3>{{ book.title }}</h3>
+                    <p>{{ book.author }}</p>
+                    <div class="price-section">
+                        <p class="price">{{ book.price | currency:'INR'}}</p>
+                        <!-- @if (book.price >0) {
+                        <p class="price">{{ book.price | currency:'INR'}} (100 % Cashback <img class="coin" src="coin.png" alt="Coin"> )</p>
+                        <p>OR</p>
+                        }
+                        <p class="price">
+                            {{book.coins}}&nbsp;<img src="coin.png" class="coin" alt="Coin">
+                        </p> -->
+                    </div>
+                    <div class="cat-tag">
+                      {{book.category}}
+                    </div>
+                </div>
+            </div>
+            @if (totalPages > 1) {
+            <div class="pagination-controls">
+                <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+                <span>Page {{ currentPage }} of {{ totalPages }}</span>
+                <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+            </div>
+            }
         </div>
     </div>
 </div>

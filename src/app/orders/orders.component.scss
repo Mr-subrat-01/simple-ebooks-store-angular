@@ -1,0 +1,134 @@
+@import '../../styles.scss';
+
+.orders {
+    padding: 2rem 1rem;
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+
+            button {
+                background-color: $primary-color;
+                color: $light-color;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                border-radius: 5px;
+                margin: 0 5px;
+
+                &:disabled {
+                    color: $text-color;
+                    background-color: $ccc;
+                    cursor: not-allowed;
+                }
+
+                &:hover:enabled {
+                    background-color: darken($primary-color, 10%);
+                }
+            }
+
+            span {
+                align-self: center;
+                margin: 0 10px;
+            }
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: $primary-color;
+        }
+
+        .order {
+            border: 1px solid $border-color;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            background-color: $light-color;
+
+            .order-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1rem;
+
+                h3 {
+                    font-size: 0.4rem;
+                    color: $primary-color;
+                }
+
+                .order-date {
+                    color: $text-color;
+                }
+            }
+
+            .order-details {
+                .order-item {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 1rem;
+                    padding: 1rem;
+                    background-color: $white-color;
+                    border-radius: 0.25rem;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+                    img {
+                        width: 60px;
+                        height: 90px;
+                        border-radius: 0.25rem;
+                        margin-right: 1rem;
+                    }
+
+                    .item-info {
+                        flex: 1;
+
+                        h4 {
+                            font-size: 0.7rem;
+                            color: $primary-color;
+                            margin: 0;
+                        }
+
+                        p {
+                            font-size: 0.7rem;
+                            color: $text-color;
+                            margin: 0;
+                        }
+
+                        .price,
+                        .cashback {
+                            margin: 0;
+                            font-size: 0.7rem;
+                            font-weight: bold;
+                            color: $success-color;
+                            // margin-top: 0.5rem;
+                            display: flex;
+                            align-items: center;
+                        }
+
+                        .btn-primary {
+                            margin-top: 5px;
+                            padding: 0.5rem 1rem;
+                            font-size: 0.8rem;
+                            color: $light-color;
+                            background-color: $primary-color;
+                            border: none;
+                            border-radius: 0.25rem;
+                            cursor: pointer;
+                            transition: background-color 0.3s;
+
+                            &:hover {
+                                background-color: darken($primary-color, 10%);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
